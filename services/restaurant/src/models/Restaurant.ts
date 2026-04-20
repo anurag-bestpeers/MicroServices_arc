@@ -8,7 +8,7 @@ export interface IRestaurant extends Document {
   phone: number;
   isverified: boolean;
   autoLocation: {
-    type: "point";
+    type: "Point";
     coordinates: [number, number]; // [longitude,latitude]
     formattedAddress: string;
   };
@@ -44,7 +44,7 @@ const schema = new Schema<IRestaurant>(
     autoLocation: {
       type: {
         type: String,
-        enum: ["point"],
+        enum: ["Point"],
         required: true,
       },
       coordinates: {
