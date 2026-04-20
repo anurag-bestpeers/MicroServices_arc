@@ -61,9 +61,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         setLocation({
           latitude,
           longitude,
-          formattedAddress:data.display_name || "current location"
+          formattedAddress:data?.address?.city_district || "current location"
         })
-        setCity(data.address.city || data.address.town||data.address.village||"Your Location")
+        setCity(data.address.city_district || data.address.town||data.address.village||"Your Location");
+        setLoadingLocation(false);
       } catch (error) {
         setLocation({
           latitude,

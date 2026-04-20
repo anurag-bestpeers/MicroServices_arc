@@ -9,7 +9,7 @@ export interface AuthenticatedRequest extends Request {
 export const isAuth = async (
   req: AuthenticatedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
@@ -32,7 +32,7 @@ export const isAuth = async (
 
     const decodedValue = jwt.verify(
       token,
-      process.env.JWT_SEC as string
+      process.env.JWT_SEC as string,
     ) as JwtPayload;
 
     if (!decodedValue || !decodedValue.user) {
@@ -46,7 +46,7 @@ export const isAuth = async (
     next();
   } catch (error) {
     res.status(500).json({
-      message: "Please Login - Jwt error",
+      message: error,
     });
   }
 };
